@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Dynamic RI Data Manager</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #f0f4f8;
+        }
+
+        /* Loading screen shown while iframe fetches */
+        #loading {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f0f4f8;
+            z-index: 10;
+            gap: 14px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid #dde3ea;
+            border-top-color: #4285f4;
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100dvh; /* dvh handles mobile browser address bar correctly */
+            border: none;
+            display: block;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading overlay: hidden automatically once iframe is ready -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <span>Loading RI Data Manager…</span>
+    </div>
+
+    <iframe
+        src="https://script.google.com/macros/s/AKfycbxR-f8WAW1zsV2WDfMtmS8cxGG0qNRThjih7lKUW61MM-iaHNbP2huz2YOyRXH_TS6D/exec"
+        allow="geolocation"
+        allowfullscreen
+        title="Dynamic RI Data Manager"
+        onload="document.getElementById('loading').style.display='none'">
+    </iframe>
+
+</body>
+</html>
